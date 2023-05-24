@@ -67,12 +67,17 @@ inquirer
       break;
     }
   };
-  shape.setColor(answers.shapeColor);
-
+  if (answers.shapeColor !== '') {
+    shape.setColor(answers.shapeColor);
+  }
+  
   // Sets answer text and text color
 
   const answerText = new Text(answers.answerText);
-  answerText.setColor(answers.textColor);
+  if (answers.textColor !== '') {
+    answerText.setColor(answers.textColor);
+  }
+
 
   // Builds SVG Image file
 
