@@ -1,37 +1,89 @@
-// TODO: Include packages needed for this application
+// Packages needed for this application 
 const inquirer = require('inquirer');
 const fs = require('fs');
+const Circle = require('./lib/circle');
+const Square = require('./lib/square');
+const Triangle = require('./lib/triangle');
+const Text = require('./lib/text');
 
 
+// Main function
 
+const main = () => {
 
-const questions = inquirer
-.prompt([
-    {
+// Prompt user for answers
+inquirer
+  .prompt([
+      {
         type: 'input',
-        name: 'shape',
-        message: 'What shape do you want?',
+        name: 'answerText',
+        message: 'Enter up to three characters:',
       },
       {
         type: 'input',
-        name: 'description',
-        message: 'What color do you want?',
+        name: 'textColor',
+        message: 'What color do you want your text?',
       },
       {
         type: 'list',
-        name: 'license',
-        message: 'Chose a license type.',
-        choices: ['Circle', 'Triange', 'Square']
+        name: 'shape',
+        message: 'What shape do you want?',
+        choices: ['Circle', 'Triangle', 'Square']
       },
-]);
+      {
+        type: 'input',
+        name: 'shapeColor',
+        message: 'What color do you want your shape?',
+      }
+  ])
 
+  // Handling answers
+  .then(answers => { 
+   console.log(answers);
 
-// TODO: Create a function to write README file
+   // Sets Shape and shape color
 
-// TODO: Create a function to initialize app
-function init() {
-    writeToFile();
-}
+   let shape;
+   switch (answers.shape) {
+    case 'Circle': {
+      shape = new Circle('20');
+      break;
+    }
+    case 'Square': {
+      shape = new Square();
+      break;
+    }
+    case 'Triangle': {
+      shape = new Triangle();
+      break;
+    }
+  };
+  shape.setColor(answers.shapeColor);
 
-// Function call to initialize app
-init();
+  // Sets answer text and text color
+
+  const answerText = new Text(answers.answerText);
+  answerText.setColor(answers.textColor);
+
+  // Builds SVG Image file
+
+  let svg = ""
+  svg += '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n'
+  svg += '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n'
+  svg += '<svg width="300px" height="200px" xmlns="http://www.w3.org/2000/svg">\n'
+
+   svg += `\t${shape.render()}\n`;
+   svg += `\t${answerText.render()}\n`;
+   svg += '</svg>'
+   
+   fs.writeFile('testSVG.svg', svg, (err) => {  
+       // throws an error, you could also catch it here
+       if (err) throw err;
+
+  }
+  );
+});
+};
+
+// Runs function/program
+main();
