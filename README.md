@@ -33,7 +33,8 @@ https://drive.google.com/file/d/1bhYd81soIhgBfwqxJGvAp2nvQ6EOoeH2/view
 ## Credits
 Rachel Croteau offered assistance with tutorials and working on the OOP.
 SVG creation code was generated with help from website:
-https://gist.github.com/carlynorama/c29ef418130da85114c89cbf4e8c399f
+https://gist.github.com/carlynorama/c29ef418130da85114c89cbf4e8c399f.
+SVG code also reviewed and worked with info from MDN.
 
 ## License
 
