@@ -96,6 +96,7 @@ inquirer
 
   }
   );
+  console.log('Generated logo.svg');
 });
 };
 
