@@ -11,13 +11,23 @@ const Text = require('./lib/text');
 
 const main = () => {
 
+  const confirmAnswerValidator = async (input) => {
+    if (input.length > 3) {
+       return 'Please restrict answer to max of 3 characters';
+    }
+    return true;
+ };
+
+
 // Prompt user for answers
+
 inquirer
   .prompt([
       {
         type: 'input',
         name: 'answerText',
         message: 'Enter up to three characters:',
+        validate: confirmAnswerValidator
       },
       {
         type: 'input',
@@ -39,14 +49,13 @@ inquirer
 
   // Handling answers
   .then(answers => { 
-   console.log(answers);
 
    // Sets Shape and shape color
 
    let shape;
    switch (answers.shape) {
     case 'Circle': {
-      shape = new Circle('20');
+      shape = new Circle('60');
       break;
     }
     case 'Square': {
@@ -72,9 +81,9 @@ inquirer
   svg += '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n'
   svg += '<svg width="300px" height="200px" xmlns="http://www.w3.org/2000/svg">\n'
 
-   svg += `\t${shape.render()}\n`;
-   svg += `\t${answerText.render()}\n`;
-   svg += '</svg>'
+  svg += `\t${shape.render()}\n`;
+  svg += `\t${answerText.render()}\n`;
+  svg += '</svg>'
    
    fs.writeFile('testSVG.svg', svg, (err) => {  
        // throws an error, you could also catch it here
