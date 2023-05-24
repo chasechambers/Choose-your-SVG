@@ -27,7 +27,7 @@ You run the project through node
 ![Example Logo](./assets/svg%20logo%20example.png)
 
 Link to walkthrough video:
-
+https://drive.google.com/file/d/1bhYd81soIhgBfwqxJGvAp2nvQ6EOoeH2/view
 
 
 ## Credits

@@ -90,7 +90,7 @@ inquirer
   svg += `\t${answerText.render()}\n`;
   svg += '</svg>'
    
-   fs.writeFile('testSVG.svg', svg, (err) => {  
+   fs.writeFile('NewLogo.svg', svg, (err) => {  
        // throws an error, you could also catch it here
        if (err) throw err;
 
